@@ -118,7 +118,7 @@
 			}
 
 			//let's limit the results so the x-axis doesn't get overwhelmed visually
-			var topValues = Enumerable.from(values).orderByDescending(function (x) { return x.value; }).take(xAxisSize).toArray();
+			var topValues = Enumerable.From(values).OrderByDescending(function (x) { return x.value; }).Take(xAxisSize).ToArray();
 
 			return [{ key: "", values: topValues }];
 		}
