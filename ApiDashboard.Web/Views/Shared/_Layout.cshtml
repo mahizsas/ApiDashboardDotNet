@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Api Request Dashboard</title>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+		<link href="~/Scripts/nvd3/src/nv.d3.css" rel="stylesheet" />
+		<script src="~/Scripts/jquery-1.6.4.js"></script>
+		<script src="~/Scripts/jquery.signalR-1.0.1.js"></script>
+		<script src="~/signalr/hubs"></script>
+		<script src="~/Scripts/linq.js"></script>
+		<script src="~/Scripts/nvd3/lib/d3.v2.js"></script>
+		<script src="~/Scripts/nvd3/nv.d3.js"></script>
+		<script src="~/Scripts/nvd3/src/tooltip.js"></script>
+		<script src="~/Scripts/nvd3/src/utils.js"></script>
+		<script src="~/Scripts/nvd3/src/models/axis.js"></script>
+		<script src="~/Scripts/nvd3/src/models/discreteBar.js"></script>
+		<script src="~/Scripts/nvd3/src/models/discreteBarChart.js"></script>
+	</head>
+    <body>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </body>
+</html>

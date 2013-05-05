@@ -1,0 +1,29 @@
+*.user
+*.suo
+bin
+obj
+*resharper*
+*.sassc
+*.scssc
+.sass-cache
+/Admin/AdminBackEnd/AdminBackEnd.Publish.xml
+/Rest API/RestApiEnd/RestApiEnd.Publish.xml
+/Common/GroupCommerce.Emailing/Emailing/Emailing.sln
+/Common/GroupCommerce.Emailing.Tests/GroupCommerce.Emailing.Tests-pmn.csproj
+/Common/GroupCommerce.Emailing/GroupCommerce.Emailing-pmn.csproj
+/Platform/Frontend/App_Data/logs/
+TestResult.xml
+/Background Processes/BackgroundProcessManagerSetup/Debug/BackgroundProcessManagerSetup.msi
+/Emailing-pmn.sln
+/Platform/ConsumerFrontEnd.VisualState.xml
+/Rest API/RestApiEnd.VisualState.xml
+/Background Processes/BackgroundProcessManagerSetup/Debug/BackgroundProcessManagerSetup.tmp
+/Rest API/RestApiEnd.VisualState.xml
+/TestResults
+/All.VisualState.xml
+/Background Processes/BackgroundApps.VisualState.xml
+/Background Processes\BackgroundProcessManagerSetup\Release/BackgroundProcessManagerSetup.msi
+/Background Processes\BackgroundProcessManagerSetup\Release/BackgroundProcessManagerSetup.msi
+
+/Background Processes/BackgroundProcessManagerSetup/Release/BackgroundProcessManagerSetup.msi
+/Admin/AdminFrontEnd.VisualState.xml

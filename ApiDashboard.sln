@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDashboard.Web", "ApiDashboard.Web\ApiDashboard.Web.csproj", "{34A52B57-ED05-4B4A-809E-4BCC533AD1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apidashboard.Service", "Apidashboard.Service\Apidashboard.Service.csproj", "{81962476-234F-4E40-AE2B-849E061991E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34A52B57-ED05-4B4A-809E-4BCC533AD1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A52B57-ED05-4B4A-809E-4BCC533AD1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A52B57-ED05-4B4A-809E-4BCC533AD1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A52B57-ED05-4B4A-809E-4BCC533AD1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81962476-234F-4E40-AE2B-849E061991E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81962476-234F-4E40-AE2B-849E061991E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81962476-234F-4E40-AE2B-849E061991E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81962476-234F-4E40-AE2B-849E061991E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,127 @@
+﻿<div id="rpmPerPublisherChart">
+	<h2>Top 5 RPM Per Publisher Id</h2>
+	<svg></svg>
+</div>
+
+<div id="rpmPerRouteChart">
+	<h2>Top 5 RPM Per Route</h2>
+	<svg></svg>
+</div>
+
+<div>
+	<h2>Total RPM: <span id="totalRpm"></span></h2>
+</div>
+
+<script>
+
+	$(function() {
+
+		var rpmPerPublisherChart, rpmPerRouteChart;
+
+		var xAxisSize = 5;
+		var hub = $.connection.apiRequestHub;
+
+		var totalApiRequestsPerPublisher = {};
+		var totalApiRequestsPerRoute = {};
+		var totalApiRequests = 0;
+
+		hub.client.send = function (publisherId, route) {
+
+			insertRequestDataPoint(totalApiRequestsPerPublisher, publisherId);
+			insertRequestDataPoint(totalApiRequestsPerRoute, route);
+			totalApiRequests++;
+			
+		};
+		
+		function insertRequestDataPoint(parentCollectionObject, dataPoint) {
+			if (parentCollectionObject.hasOwnProperty(dataPoint)) {
+				parentCollectionObject[dataPoint] = parentCollectionObject[dataPoint] + 1;
+			} else {
+				parentCollectionObject[dataPoint] = 1;
+			}
+		}
+
+		//start recieving api request data from server
+		$.connection.hub.start();
+		
+		function addBarGraph(selectorText, chartData, updateGraphPointer) {
+			nv.addGraph(function () {
+				var graph = nv.models.discreteBarChart()
+					.x(function (d) { return d.label; })
+					.y(function (d) { return d.value; })
+					.staggerLabels(true)
+					.tooltips(false)
+					.showValues(true);
+
+				d3.select(selectorText)
+					.datum(chartData)
+					.transition().duration(500)
+					.call(graph);
+
+				nv.utils.windowResize(graph.update);
+				updateGraphPointer(graph);
+
+				initGraphRedraw();
+
+				return graph;
+			});
+		}
+
+		addBarGraph('#rpmPerPublisherChart svg', getChartData(totalApiRequestsPerPublisher), function (chart) { rpmPerPublisherChart = chart;});
+		addBarGraph('#rpmPerRouteChart svg', getChartData(totalApiRequestsPerRoute), function (chart) { rpmPerRouteChart = chart;});
+		
+		function redrawAll() {
+			redraw('#rpmPerPublisherChart svg', getChartData(totalApiRequestsPerPublisher), rpmPerPublisherChart);
+			redraw('#rpmPerRouteChart svg', getChartData(totalApiRequestsPerRoute), rpmPerRouteChart);
+			$('#totalRpm').html(Math.round(totalApiRequests / (elapsedSeconds / 60)));
+		}
+				
+		function redraw(selectorText, graphData, graph) {
+			d3.select(selectorText)
+				.datum(graphData)
+				.transition().duration(500)
+				.call(graph);
+		}
+
+		var graphRedrawRunning = false;
+		function initGraphRedraw() {
+			
+			if (!graphRedrawRunning) {
+				self.setInterval(function () { redrawAll(); }, 500);
+				graphRedrawRunning = true;
+			}
+			
+		}
+		
+		var elapsedSeconds = 0;
+		self.setInterval(function () { elapsedSeconds++; }, 100);
+
+		function getChartData(parentDataCollection) {
+
+			var values = [];
+			
+			for (var propertyName in parentDataCollection) {
+				
+				if (parentDataCollection.hasOwnProperty(propertyName)) {
+
+					var requestsPerMinute = parentDataCollection[propertyName];
+					
+					if (elapsedSeconds > 60)
+						requestsPerMinute = requestsPerMinute / (elapsedSeconds / 60);
+
+					values.push({
+						label: propertyName,
+						value: requestsPerMinute
+					});
+
+				}
+			}
+
+			//let's limit the results so the x-axis doesn't get overwhelmed visually
+			var topValues = Enumerable.from(values).orderByDescending(function (x) { return x.value; }).take(xAxisSize).toArray();
+
+			return [{ key: "", values: topValues }];
+		}
+	});
+
+</script>
